@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
     session[:sort] = params[:sort] if params[:sort]
 
     #to preserve restfulness
-    redirect_to movies_path(ratings: Hash[session[:ratings].map {|r| [r,1]}], sort: session[:sort]) if session[:ratings] && ( !params[:ratings] || !params[:sort])
+    redirect_to movies_path(ratings: Hash[session[:ratings].map {|r| [r,1]}], sort: session[:sort]) if session[:ratings] && session[:sort] && ( !params[:ratings] || !params[:sort])
 
     @ratings = session[:ratings] || @all_ratings
     @sort = session[:sort] || 'id'
